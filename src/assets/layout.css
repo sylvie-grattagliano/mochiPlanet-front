@@ -1,0 +1,17 @@
+main {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f7f7f7;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #5c4a3f;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
