@@ -1,73 +1,50 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../assets/style.css"; 
-import "../assets/catalogue.css";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
+const Navbar = () => {
+  const { user, logout } = useAuth(); // Récupérer user et logout depuis le contexte
+  const navigate = useNavigate(); // Pour naviguer vers d'autres pages
 
-
-
-function NavBar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Définit l'état de connexion
-  const handleLogin = () => {
-    setIsLoggedIn(true); // Simule une connexion
-  };
   const handleLogout = () => {
-    setIsLoggedIn(false); // Simule une déconnexion
+    logout(); // Déconnecter l'utilisateur
+    navigate("/"); // Rediriger vers la page d'accueil
   };
 
   return (
     <nav className="navbar">
-      {/* Logo et Titre */}
       <div className="logo-container">
         <img src="/upload/logo-mochi-2.png" alt="Logo Mochi" className="nav-logo" />
         <span className="site-title">Mochi Planet</span>
       </div>
 
-      {/* Menu Burger burger ou x */}
-      <div className="menu-burger" onClick={toggleMenu}>
-        <i className={`fas ${menuOpen ? "fa-times" : "fa-bars"}`}></i> 
-      </div>
-
-      {/* Liens de Navigation  onclick ferme le menu burger*/}
-      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+      <ul className="nav-links">
         <li>
-        <Link to="/" onClick={() => setMenuOpen(false)}>Accueil</Link>
-
+          <Link to="/">Accueil</Link>
         </li>
         <li>
-        <Link to="/catalogue" onClick={() => setMenuOpen(false)}>Catalogue</Link>
+          <Link to="/catalogue">Catalogue</Link>
         </li>
         <li>
-        <Link to="/cart" onClick={() => setMenuOpen(false)}>Mon Panier</Link>
+          <Link to="/cart">Mon Panier</Link>
         </li>
       </ul>
 
-      {/* Icônes de Navigation
       <div className="nav-icons">
-        <Link to="/login" className="icon-link">
-          <i className="fas fa-user"></i>
-        </Link>
-      </div> */}
-      {/* Bouton Connexion/Déconnexion */}
-      <div className="nav-icons">
-        {!isLoggedIn ? (
-          <button className="btn-login" onClick={handleLogin}>
-            <i className="fas fa-user"></i> Connexion
-          </button>
-        ) : (
+        {user ? (
+          // Bouton Déconnexion pour les utilisateurs connectés
           <button className="btn-logout" onClick={handleLogout}>
             <i className="fas fa-sign-out-alt"></i> Déconnexion
+          </button>
+        ) : (
+          // Bouton Connexion pour les utilisateurs non connectés
+          <button className="btn-login" onClick={() => navigate("/login")}>
+            <i className="fas fa-user"></i> Connexion
           </button>
         )}
       </div>
     </nav>
   );
-}
+};
 
-export default NavBar;
-
+export default Navbar;

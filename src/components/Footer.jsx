@@ -8,10 +8,10 @@ function Footer () {
 
     return (
 
-        <footer class="footer">
-    <div class="footer-content">
-    <span class="footer-year">© 2025 Mochi Planet</span>
-        <Link to="/about.php" class="footer-link">À propos</Link>
+        <footer className="footer">
+    <div className="footer-content">
+    <span className="footer-year">© 2025 Mochi Planet</span>
+        <Link to="/about.php" className="footer-link">À propos</Link>
         
     </div>
 </footer>
