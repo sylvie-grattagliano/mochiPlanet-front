@@ -4,41 +4,44 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
 
+  // Vérifie si une session est active
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost/mochiPlanet-back/api/users/sessionCheck.php");
+        const response = await fetch("http://localhost/mochiPlanet-back/api/users/session.php", {
+          method: "POST",
+          credentials: "include", // Nécessaire pour inclure les cookies
+        });
         const data = await response.json();
-
-        if (data.logged_in) {
-          setUser(data.user);
+        if (data.success) {
+          setUser(data.user); // Mettre à jour l'utilisateur connecté
         }
-      } catch (err) {
-        console.error("Erreur de vérification de session :", err);
-      } finally {
-        setLoading(false);
+      } catch (error) {
+        console.error("Erreur lors de la vérification de la session :", error);
       }
     };
 
     checkSession();
   }, []);
 
-  const login = (userData) => {
-    setUser(userData);
+  // Fonction pour se connecter
+  const login = (user) => {
+    setUser(user);
   };
 
+  // Fonction pour se déconnecter
   const logout = () => {
     setUser(null);
-    fetch("http://localhost/mochiPlanet-back/api/users/logout.php");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

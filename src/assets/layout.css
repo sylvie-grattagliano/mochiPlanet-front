@@ -1,17 +1,66 @@
-main {
-    margin: 0 auto;
-    padding: 20px;
+/* Styles de base pour mobile */
+html, body {
+    height: 100%; /* Nécessaire pour un conteneur flex en pleine hauteur */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .layout-container {
+    display: flex;
+    flex-direction: column; /* Organisation verticale */
+    min-height: 100vh; /* Prend toute la hauteur de l'écran */
+  }
+  
+   .content {
+    flex: 1; /* Prend tout l'espace restant entre Navbar et Footer */
+    /* padding: 20px; Marges internes du contenu */
+  } 
+  .footer-content {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
     max-width: 1200px;
-    background-color: #f7f7f7;
+    margin: 0 auto;
+    font-size: 1rem;
+    gap: 20px;
+    color: #5c4a3f;
+  }
+  /* Lien "À propos" */
+  .footer-link {
+    color: #5c4a3f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  .footer-link:hover {
+    color: whi#d38a5c ;
   }
   
   footer {
+    background-color: #dcb8b1 ; /* Couleur du footer */
     text-align: center;
     padding: 10px;
-    background-color: #5c4a3f;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    font-size: 0.9rem;
   }
+  @media (min-width: 768px) {
+    .content {
+      padding: 30px; /* Augmenter l'espace pour les tablettes */
+    }
   
+    footer {
+      font-size: 1rem; /* Texte légèrement plus grand */
+      padding: 15px 30px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .content {
+      padding: 50px; /* Espacement plus large pour les PC */
+    }
+  
+    footer {
+      font-size: 1.1rem; /* Texte plus grand pour les écrans plus larges */
+      padding: 20px 50px;
+    }
+  }
+      

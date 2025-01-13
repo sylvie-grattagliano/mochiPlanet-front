@@ -1,7 +1,7 @@
 /* Footer - Mobile First */
 footer {
     background-color: #dcb8b1; /* Chocolat foncé  */
-    color: white;
+    /* color: white; */
     /* text-align: center;  */
     padding: 15px 10px;
     font-size: 0.9rem;
@@ -39,7 +39,7 @@ footer {
     }
     /* Lien "À propos" */
     .footer-link {
-      color: #5c4a3f;
+      color: #d38a5c;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
