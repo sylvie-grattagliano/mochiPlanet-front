@@ -21,6 +21,7 @@ function Layout() {
       {/* Pied de page */}
       
       <Footer />
+      
       </div> 
     </>
   );

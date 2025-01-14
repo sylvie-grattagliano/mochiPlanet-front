@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../assets/login.css"; // Assurez-vous que le fichier CSS est inclus
+import "../assets/login.css"; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -12,36 +12,31 @@ const LoginPage = () => {
 
   
 
-    const handleLogin = async (e) => {
-      e.preventDefault(); // Empêche le rechargement de la page
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost/mochiPlanet-back/api/users/login.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
   
-      try {
-        const response = await fetch("http://localhost/mochiPlanet-back/api/users/login.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Inclure les cookies
-          body: JSON.stringify({ email, password }), // Envoyer les données au backend
-        });
-  
-        const data = await response.json(); // Convertir la réponse en JSON
-  
-        console.log(data); // Debug : Vérifier la réponse API
-  
-        if (data.success) {
-          login(data.user); // Met à jour le contexte avec l'utilisateur connecté
-          navigate("/catalogue"); // Redirige vers la page Catalogue
-        } else {
-          setError(data.error || "Connexion échouée."); // Affiche une erreur en cas d'échec
-        }
-      } catch (error) {
-        setError("Erreur lors de la connexion."); // Erreur réseau ou serveur
-        console.error("Erreur API :", error); // Debug : Vérifier l'erreur dans la console
+      const data = await response.json();
+      console.log("Réponse de l'API :", data); // Ajoutez ceci pour debug
+      if (data.success) {
+        login(data.user);
+        navigate("/catalogue");
+      } else {
+        setError(data.error || "Connexion échouée.");
       }
-    };
-  
-
+    } catch (error) {
+      console.error("Erreur API :", error);
+      setError("Erreur lors de la connexion.");
+    }
+  };
   return (
     <div className="login-container">
       <h1>Connexion</h1>

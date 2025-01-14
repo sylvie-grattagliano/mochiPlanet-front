@@ -34,9 +34,31 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
   };
+  // Fonction pour s'inscrire
+  const register = async (userData) => {
+    try {
+      const response = await fetch("http://localhost/mochiPlanet-back/api/users/register.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        return { success: true, message: "Inscription réussie !" };
+      } else {
+        return { success: false, message: data.message || "Erreur lors de l'inscription." };
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'inscription :", error);
+      return { success: false, message: "Erreur réseau ou serveur." };
+    }
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
@@ -45,3 +67,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+
+  
+
+

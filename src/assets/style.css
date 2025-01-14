@@ -10,6 +10,7 @@
 /* Global Styles */
 body {
   margin: 0;
+  padding: 0;;
   box-sizing: border-box;
 }
 
@@ -29,104 +30,149 @@ body {
   justify-content: space-between;
   align-items: center;
   position: relative;
-}
+} 
 /* Conteneur pour l'icône */
-.nav-icons {
+ .nav-icons {
   display: flex;
   align-items: center;
   margin-right: 10px;
-}
+} 
 
-.icon-link {
+ .icon-link {
   text-decoration: none;
-  color: #5c4a3f; /* Couleur de l'icône */
+  color: white; /* Couleur de l'icône */
   font-size: 20px; /* Taille de l'icône */
   margin-left: 20px; /* Espacement entre les éléments */
   transition: color 0.3s ease;
-}
+} 
 
-.icon-link:hover {
+ .icon-link:hover {
   color: #c172e3; /* Couleur au survol */
-}
+} 
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 18px;
 }
 
 .nav-logo {
-  height: 70px;
-  width: auto;
+  height: 40px;
+  margin-right: 10px;
 }
-/* menu mobile */
+
+.site-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Menu Burger */
 .menu-burger {
-  font-size: 24px; /* Taille de l'icône */
-  cursor: pointer; /* Curseur en forme de main */
-  display: block; /* Visible sur mobile */
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-/* Liens de navigation */
+.menu-burger i {
+  color: #333;
+}
+
+/* Navigation Links */
 .nav-links {
-  display: none; /* Masqué par défaut */
   list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  flex-direction: column; /* Liens empilés sur mobile */
-  gap: 10px;
-  top: 60px; /* Position sous la barre de navigation */
-  right: 0;
-  background-color: #a276f4;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 10px 10px;
-  z-index: 10;
+  display: flex;
+  gap: 20px;
 }
 
-/* Liens actifs (menu burger ouvert) */
-.nav-links.active {
-  display: flex; /*affiche si activé */
-}
-
-/* Style des liens */
 .nav-links li {
-  margin: 10px 0;
+  font-size: 16px;
 }
-/* Liens individuels */
+
 .nav-links a {
   text-decoration: none;
-  color: #5c4a3f;
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .nav-links a:hover {
-  background-color: #c172e3; /* Couleur au survol */
+  color: #007bff; /* Couleur bleue au survol */
 }
 
-/* Responsivité pour la barre de navigation */
-@media (min-width: 768px) {
+/* Responsive Design for Menu Burger */
+@media (max-width: 768px) {
   .menu-burger {
-    display: none; /* Cacher le menu burger sur desktop */
+    display: block;
   }
 
   .nav-links {
-    display: flex; /* Afficher horizontalement */
-    flex-direction: row;
-    gap: 20px;
-    position: static;
-    background-color: transparent;
-    width: auto;
-    box-shadow: none;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
   }
-  .nav-links li {
-    margin: 0 15px;
+
+  .nav-links.active {
+    display: flex;
   }
+}
+
+/* User Menu */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espace entre les éléments */
+}
+
+.welcome-message {
+  font-size: 14px;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Buttons */
+.btn-login,
+.btn-register,
+.btn-logout {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-login {
+  background-color: #007bff; /* Couleur bleue pour Connexion */
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #0056b3;
+}
+
+.btn-register {
+  background-color: #28a745; /* Couleur verte pour Inscription */
+  color: white;
+}
+
+.btn-register:hover {
+  background-color: #218838;
+}
+
+.btn-logout {
+  background-color: #dc3545; /* Couleur rouge pour Déconnexion */
+  color: white;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
 }
 /* Section Hero */
 .hero {

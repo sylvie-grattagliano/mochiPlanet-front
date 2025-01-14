@@ -30,19 +30,13 @@ const CataloguePage = () => {
         setProducts(data); // Stocke les produits dans le state
       })
       .catch((err) => {
-        console.error("Erreur lors de l'appel API :", err);
+        // console.error("Erreur lors de l'appel API :", err);
         setError(err.message);
       });
   }, []);
 
 
-  // if (error) {
-  //   return <p>Erreur : {error}</p>;
-  // }
-
-  // if (products.length === 0) {
-  //   return <p>Chargement des produits...</p>;
-  // }
+  
   const handleAddToCart = async (productId) => {
     if (!user) {
       alert("Veuillez vous connecter pour ajouter des produits au panier.");

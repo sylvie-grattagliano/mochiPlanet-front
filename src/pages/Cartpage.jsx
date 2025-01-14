@@ -94,6 +94,14 @@ const handleRemoveFromCart = async (productId) => {
   if (!user) return <p>Veuillez vous connecter pour accéder à votre panier.</p>;
 
   return (
+    <div className="cart-container">
+     {/* Affichez le message de bienvenue */}
+     {user ? (
+      <h2>Bienvenue, {user.name} ! Voici votre panier :</h2>
+    ) : (
+      <h2>Bienvenue, invité ! Connectez-vous pour voir votre panier.</h2>
+    )}
+    {/* Contenu du panier */}
     <div className="cart-table">
   <div className="cart-header">
     <span>Image</span>
@@ -126,11 +134,13 @@ const handleRemoveFromCart = async (productId) => {
         Supprimer
       </button>
     </div>
+    
   ))}
   <div className="cart-total">
     <span>Total à payer :</span>
     <span>{calculateTotal()} €</span>
   </div>
+</div>
 </div>
   );
 };
